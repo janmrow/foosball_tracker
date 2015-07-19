@@ -1,0 +1,6 @@
+<%= form_for @match do |f| %>
+  <%= f.text_field :loserscore %>
+  <%= f.select :loserscore, options_for_select([["1"], ["2"]]) %>
+  <%= f.collection_select :first_player_id, Player.all, :id, :firstname %>
+  <%= f.submit %>
+<% end %>
