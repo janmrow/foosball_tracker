@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150719115917) do
+ActiveRecord::Schema.define(version: 20150719132734) do
 
   create_table "matches", force: true do |t|
     t.integer  "first_player_id"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20150719115917) do
     t.string   "avatar"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "loser_player_id"
   end
 
 end
