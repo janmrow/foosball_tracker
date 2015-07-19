@@ -1,3 +1,4 @@
 <p>This is page <%= @player.firstname %> <%= @player.lastname %> 
   (nickname: <%= @player.nickname %>)
 </p>
+<%= image_tag @player.avatar.url(:medium) %>

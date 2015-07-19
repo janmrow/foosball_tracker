@@ -4,6 +4,7 @@
   <%= f.label :lastname %>
   <%= f.text_field :lastname %><br>
   <%= f.label :nickname %>
-  <%= f.text_field :nickname %>
+  <%= f.text_field :nickname %><br>
+  <%= f.file_field :avatar, as: :file %><br>
   <%= f.submit "Add" %>
 <% end %>
