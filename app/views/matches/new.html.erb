@@ -1,7 +1,9 @@
 <%= form_for @match do |f| %>
-  <%= f.collection_select :winner_player_id, Player.all, :id, :firstname %>
-  <%= f.collection_select :loser_player_id, Player.all, :id, :firstname %>
-  <%= f.select :loserscore, options_for_select([["1"], ["2"]]) %>
+  <%= f.label :winner_player_id, "Winner: " %>
+  <%= f.collection_select :winner_player_id, Player.all, :id, :full_name %><br>
+  <%= f.label :loser_player_id, "Loser: " %>
+  <%= f.collection_select :loser_player_id, Player.all, :id, :full_name %>
+  <p>Loser's score: <%= f.select :loserscore, options_for_select(1..10) %></p>
   <%= f.label :date %>
   <%= f.submit %>
 <% end %>

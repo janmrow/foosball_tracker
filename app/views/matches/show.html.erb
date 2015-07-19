@@ -1,3 +1,6 @@
-<h3>THis is match #<%= @match.id %></h3>
-<p>Match between: <%= @match.first_player_id %> vs <%= @match.second_player_id %></p>
+<h3>This is match #<%= @match.id %></h3>
+<p>Match between:
+  <%= Player.find(@match.winner_player_id).full_name %> vs 
+  <%= Player.find(@match.loser_player_id).full_name %>
+</p>
 <p>Score: 10 : <%= @match.loserscore %></p>
