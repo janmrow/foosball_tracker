@@ -5,6 +5,14 @@ class Player < ActiveRecord::Base
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
   def full_name
-    "#{firstname} #{lastname}"
+    "#{firstname} #{lastname} (#{nickname})"
+  end
+
+  def wins
+    @wins = Match.where(winner_player_id: self.id) 
+  end
+
+  def losts
+    @losts = Match.where(loser_player_id: id)
   end
 end

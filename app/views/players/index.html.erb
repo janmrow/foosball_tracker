@@ -3,6 +3,7 @@
 <h1>List of players</h1>
   <ul>
   <% @players.each do |player| %>
-    <li><%= link_to player.firstname + " " + player.lastname, player_path(player)  %></li>
+    <li><%= link_to player.firstname + " " + player.lastname, player_path(player) %> 
+    (<%= player.nickname %>)</li>
   <% end %>
   </ul>

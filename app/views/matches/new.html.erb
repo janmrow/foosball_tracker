@@ -4,6 +4,7 @@
   <%= f.label :loser_player_id, "Loser: " %>
   <%= f.collection_select :loser_player_id, Player.all, :id, :full_name %>
   <p>Loser's score: <%= f.select :loserscore, options_for_select(1..10) %></p>
-  <%= f.label :date %>
+  <%= f.label :date %> (format: YYYY-mm-dd)
+  <%= f.date_field :date %><br>
   <%= f.submit %>
 <% end %>

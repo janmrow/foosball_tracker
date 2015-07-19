@@ -2,3 +2,15 @@
   (nickname: <%= @player.nickname %>)
 </p>
 <%= image_tag @player.avatar.url(:medium) %>
+<h3>Wins</h3>
+<ul>
+  <% @player.wins.each do |match| %>
+    <li><%= match.date %> with <%= Player.find(match.loser_player_id).full_name %></li>
+  <% end %>
+</ul>
+<h3>Losts</h3>
+<ul>
+  <% @player.losts.each do |match| %>
+    <li><%= match.date %> with <%= Player.find(match.winner_player_id).full_name %></li>
+  <% end %>
+</ul>
