@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
+  get 'pages/home'
+  get 'pages/about'
   get 'matches/new'
-
-  root 'players#index'
+  root 'pages#home'
   resources :players
   resources :matches
+
+  # maybe some upgrades in routes?
 end
