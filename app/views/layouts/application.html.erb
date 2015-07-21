@@ -8,9 +8,54 @@
 </head>
 <body>
 
+
 <div class="container">
-  <%= yield %> 
-</div>
+  
+  <div class="row">
+    <nav class="col-sm-2"><!--nav-->
+      <div class="row">
+        <ul class="nav nav-pills nav-stacked">
+          <li><%= link_to "Home", root_path %></li>
+          <li><%= link_to "Players", players_path %></li>
+          <li><%= link_to "Ranking", players_path %></li>
+          <li><%= link_to "Add Player", new_player_path %></li>
+          <li><%= link_to "Add Match", new_match_path %></li>          
+        </ul>        
+      </div>
+    </nav><!--/nav-->
+      
+      <div class="col-sm-10"><!--content-->
+        <div class="row">
+          <div class="col-xs-12">            
+            <div class="row">
+              <div class="col-md-12">
+              <h1>Headline</h1><p class="lead">Hello! You can Add match or Add player (bootstrap buttons)</p>
+              <%= link_to "Add player", new_player_path %><br>
+              <%= link_to "Add match", new_match_path %> 
+
+              <%= yield %>  
+              </div>
+            </div>
+
+            <div class="row">
+            <h2>Top 3 players</h2>
+              <div class="col-md-3 col-sm-6 post">
+                 <a href="#" class="thumbnail"><img src="" alt="" /></a>
+                <h2>Player 1</h2><p>Basic info about player</p>
+                <span class="btn btn-default">More</span>
+              </div>
+            </div>    
+          </div>
+        </div>
+      </div>
+    </div>   
+        
+ </div><!--/content-->
+
+    <footer class="row footer">
+      <div class="panel-footer"><p>&copy; 2015 Jan Mrowiec</p></div>
+    </footer>
+
 
 
 </body>
