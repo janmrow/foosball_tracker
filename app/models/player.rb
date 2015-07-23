@@ -45,11 +45,12 @@ class Player < ActiveRecord::Base
   end
 
   def simple_rank_points
-    number_of_wins * 0.6 - number_of_losts * 0.2 + points_earned * 0.1 - points_lost * 0.1 
+    number_of_wins * 1 - number_of_losts * 0.3 + points_earned/10 * 0.1 - points_lost/10 * 0.1 
   end
 
   def simple_rank
-    @players = Player.all
-    @players.sort_by { |player| player.simple_rank_points }
+    @players = Player.all.to_a
+    @players.delete_if { |player| player.number_of_matches == 0 } # get rid of players which have not played the first match yet
+    @players.sort_by { |player| player.simple_rank_points }.reverse
   end
 end

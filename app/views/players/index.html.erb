@@ -1,4 +1,25 @@
 <h1>List of players</h1>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Rank</th>
+      <th>Name (nickname)</th>
+      <th>Wins/Matches</th>
+      <th>Points</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @players.each_with_index do |player, index| %>
+    <tr>
+      <td class="col-md-1"><%= index + 1 %></td>
+      <td class="col-md-2"><%= link_to player.full_name, player_path(player) %></td>
+      <td class="col-md-1"><%= player.number_of_wins %> / <%= player.number_of_matches %></td>
+      <td class="col-md-1"><%= player.simple_rank_points %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
   <ul>
   <% @players.each do |player| %>
     <li><%= link_to player.firstname + " " + player.lastname, player_path(player) %> 
