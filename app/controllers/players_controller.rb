@@ -15,12 +15,25 @@ class PlayersController < ApplicationController
 
   def create
     @player = Player.create(player_params)
-    redirect_to :root
+    redirect_to player_path(@player)
+  end
+
+  def edit
+    @player = Player.find(params[:id])
+  end
+
+  def update
+    @player = Player.find(params[:id])
+    @player.update(player_params_avatar)
+    redirect_to player_path(@player)
   end
 
   private
 
     def player_params
       params.require(:player).permit(:firstname, :lastname, :nickname, :avatar)
+    end
+     def player_params_avatar
+      params.require(:player).permit(:avatar)
     end
 end

@@ -23,3 +23,4 @@
   <li>Points lost: <%= @player.points_lost %></li>
   <li>Rank: <%= @player.simple_rank_points %></li>
 </ul>
+<%= link_to "Edit", edit_player_path(@player), class: "btn btn-default" %>
