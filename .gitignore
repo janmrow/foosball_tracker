@@ -15,5 +15,5 @@
 /log/*.log
 /tmp
 
-#ignore avatars
+# ignore avatars
 /public/system/players/avatars

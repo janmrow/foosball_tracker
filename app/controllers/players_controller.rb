@@ -25,6 +25,7 @@ class PlayersController < ApplicationController
   def update
     @player = Player.find(params[:id])
     @player.update(player_params_avatar)
+    @player.update_attribute(:avatar, params[:player][:avatar])
     redirect_to player_path(@player)
   end
 
@@ -34,6 +35,6 @@ class PlayersController < ApplicationController
       params.require(:player).permit(:firstname, :lastname, :nickname, :avatar)
     end
      def player_params_avatar
-      params.require(:player).permit(:avatar)
+      params.permit(:avatar)
     end
 end
