@@ -1,7 +1,8 @@
 class PlayersController < ApplicationController
   
   def index
-    @players = Player.all
+    @players = Player.new
+    @players = @players.simple_rank
   end
 
   def show

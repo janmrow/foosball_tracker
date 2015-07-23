@@ -14,3 +14,12 @@
     <li><%= match.date %> with <%= Player.find(match.winner_player_id).full_name %></li>
   <% end %>
 </ul>
+<h3>Statistics</h3>
+<ul>
+  <li>Matches: <%= @player.number_of_matches %></li>
+  <li>Wins: <%= @player.number_of_wins %></li>
+  <li>Losts: <%= @player.number_of_losts %></li>
+  <li>Points earned: <%= @player.points_earned %></li>
+  <li>Points lost: <%= @player.points_lost %></li>
+  <li>Rank: <%= @player.simple_rank_points %></li>
+</ul>
