@@ -1,3 +1,8 @@
+<h1>Change avatar</h1>
+<p>Do you want to change avatar of <b><%= @player.full_name %>?</b></p>
+<p>The current avatar is:</p>
+<%= image_tag @player.avatar.url(:medium) %>
+<h2>So choose a new one!</h2>
 <%= form_for @player do |f| %>
   <%= f.file_field :avatar, as: :file %><br>
   <%= f.submit "Change avatar" %>

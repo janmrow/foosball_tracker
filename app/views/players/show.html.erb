@@ -1,26 +1,36 @@
-<p>This is page <%= @player.firstname %> <%= @player.lastname %> 
-  (nickname: <%= @player.nickname %>)
-</p>
-<%= image_tag @player.avatar.url(:medium) %>
-<h3>Wins</h3>
-<ul>
-  <% @player.wins.each do |match| %>
-    <li><%= match.date %> with <%= Player.find(match.loser_player_id).full_name %></li>
-  <% end %>
-</ul>
-<h3>Losts</h3>
-<ul>
-  <% @player.losts.each do |match| %>
-    <li><%= match.date %> with <%= Player.find(match.winner_player_id).full_name %></li>
-  <% end %>
-</ul>
-<h3>Statistics</h3>
-<ul>
-  <li>Matches: <%= @player.number_of_matches %></li>
-  <li>Wins: <%= @player.number_of_wins %></li>
-  <li>Losts: <%= @player.number_of_losts %></li>
-  <li>Points earned: <%= @player.points_earned %></li>
-  <li>Points lost: <%= @player.points_lost %></li>
-  <li>Rank: <%= @player.simple_rank_points %></li>
-</ul>
-<%= link_to "Edit", edit_player_path(@player), class: "btn btn-default" %>
+<div class="row">
+  <div class="col-md-12">
+    <h2>
+      <%= image_tag @player.avatar.url(:medium) %>
+      <%= @player.full_name %>
+    </h2>
+    <p>This is page <%= @player.firstname %> <%= @player.lastname %>. Here you can learng something more about him.</p>
+    <%= link_to "Change avatar", edit_player_path(@player), class: "btn btn-default" %>
+    <% if @player.number_of_wins > 0%>
+    <h3>Wins</h3>
+    <ul>
+      <% @player.wins.each do |match| %>
+        <li><%= match.date %> with <%= Player.find(match.loser_player_id).full_name %></li>
+      <% end %>
+    </ul>
+    <% end %>
+    <% if @player.number_of_losts > 0 %>
+    <h3>Losts</h3>
+    <ul>
+      <% @player.losts.each do |match| %>
+        <li><%= match.date %> with <%= Player.find(match.winner_player_id).full_name %></li>
+      <% end %>
+    </ul>
+    <% end %>
+    <h3>Statistics</h3>
+    <ul>
+      <li>Matches: <%= @player.number_of_matches %></li>
+      <li>Wins: <%= @player.number_of_wins %></li>
+      <li>Losts: <%= @player.number_of_losts %></li>
+      <li>Points earned: <%= @player.points_earned %></li>
+      <li>Points lost: <%= @player.points_lost %></li>
+      <li>Rank: <%= @player.simple_rank_points %></li>
+    </ul>
+</div>
+
+
