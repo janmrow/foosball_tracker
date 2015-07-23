@@ -1,10 +1,22 @@
-<%= form_for @match do |f| %>
-  <%= f.label :winner_player_id, "Winner: " %>
-  <%= f.collection_select :winner_player_id, Player.all, :id, :full_name %><br>
-  <%= f.label :loser_player_id, "Loser: " %>
-  <%= f.collection_select :loser_player_id, Player.all, :id, :full_name %>
-  <p>Loser's score: <%= f.select :loserscore, options_for_select(1..10) %></p>
-  <%= f.label :date %> (format: YYYY-mm-dd)
-  <%= f.date_field :date %><br>
-  <%= f.submit %>
+<% if Player.count > 1 %>
+  <%= form_for @match do |f| %>
+    <%= f.label :winner_player_id, "Winner: " %>
+    <%= f.collection_select :winner_player_id, Player.all, :id, :full_name %><br>
+    <%= f.label :loser_player_id, "Loser: " %>
+    <%= f.collection_select :loser_player_id, Player.all, :id, :full_name %>
+    <p>Loser's score: <%= f.select :loserscore, options_for_select(1..10) %></p>
+    <%= f.label :date %> (format: YYYY-mm-dd)
+    <%= f.date_field :date %><br>
+    <%= f.submit %>
+  <% end %>
+
+<% else %>
+
+<div class="row">
+  <div class="col-md-12">
+    <h2>Upss. We have a problem</h2>
+    <p>You must add at least two players before you add a match!</p>  
+    <%= link_to "Add player", new_player_path, class: "btn btn-default" %>
+</div>
+
 <% end %>
