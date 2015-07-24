@@ -53,4 +53,9 @@ class Player < ActiveRecord::Base
     @players.delete_if { |player| player.number_of_matches == 0 } # get rid of players which have not played the first match yet
     @players.sort_by { |player| player.simple_rank_points }.reverse
   end
+
+  def update_rank
+    self.rank = simple_rank_points
+    self.save
+  end
 end
