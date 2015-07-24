@@ -19,10 +19,3 @@
     <% end %>
   </tbody>
 </table>
-
-  <ul>
-  <% @players.each do |player| %>
-    <li><%= link_to player.firstname + " " + player.lastname, player_path(player) %> 
-    (<%= player.nickname %>)</li>
-  <% end %>
-  </ul>
