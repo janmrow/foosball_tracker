@@ -42,7 +42,7 @@ class PlayersController < ApplicationController
     end
 
     def sort_column
-      Player.column_names.include?(params[:sort]) ? params[:sort] : "nickname"
+      Player.column_names.include?(params[:sort]) ? params[:sort] : "position"
     end
 
     def sort_direction

@@ -58,4 +58,19 @@ class Player < ActiveRecord::Base
     self.rank = simple_rank_points
     self.save
   end
+
+  def self.update_position
+    @players = Player.all
+    @players = @players.sort_by { |player| player.rank.to_i }.reverse
+
+    @players.each_with_index do |player, index|
+      player.position = index + 1
+      player.save
+       end
+
+
+    # @player = Player.find(14)
+    # @player.position = 1
+    # @player.save
+  end
 end

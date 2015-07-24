@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150724102424) do
+ActiveRecord::Schema.define(version: 20150724112733) do
 
   create_table "matches", force: true do |t|
     t.integer  "winner_player_id"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 20150724102424) do
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.decimal  "rank",                precision: 8, scale: 2
+    t.integer  "position"
   end
 
 end

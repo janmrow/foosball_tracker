@@ -11,6 +11,8 @@ class MatchesController < ApplicationController
 
       @loser = Player.find(params[:match][:loser_player_id])
       @loser.update_rank
+
+      Player.update_position
   end
     redirect_to @match
   end
