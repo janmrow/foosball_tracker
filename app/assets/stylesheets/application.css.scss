@@ -43,6 +43,13 @@ nav div, h1, h2, h3, h4, h5, h6 {
   background-color: transparent;
 }
 
+a {
+  color: black;
+}
+a.thumbnail:hover, a.thumbnail:focus{
+  border: 6px solid black;
+}
+
 .post {
   margin-bottom: 30px;
 }
@@ -51,11 +58,18 @@ nav div, h1, h2, h3, h4, h5, h6 {
   width: 600px;
 }
 
-a {
-  color: black;
+th .current {
+  padding-right: 22px;
+  background-repeat: no-repeat;
+  background-position: right center;
 }
-a.thumbnail:hover, a.thumbnail:focus{
-  border: 6px solid black;
+
+th .asc {
+  background-image: image-url("up.png");
+}
+
+th .desc {
+  background-image: image-url("down.png");
 }
 
 footer p {

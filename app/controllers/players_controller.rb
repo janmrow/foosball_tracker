@@ -1,8 +1,10 @@
 class PlayersController < ApplicationController
-  
+  helper_method :sort_column, :sort_direction
+
   def index
-    @players = Player.new
-    @players = @players.simple_rank
+    @players = Player.order(sort_column + " " + sort_direction)
+    #@players = @players.simple_rank
+    #@players.order(params[:sort])
   end
 
   def show
@@ -34,7 +36,16 @@ class PlayersController < ApplicationController
     def player_params
       params.require(:player).permit(:firstname, :lastname, :nickname, :avatar)
     end
-     def player_params_avatar
+
+    def player_params_avatar
       params.permit(:avatar)
+    end
+
+    def sort_column
+      Player.column_names.include?(params[:sort]) ? params[:sort] : "firstname"
+    end
+
+    def sort_direction
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
     end
 end
