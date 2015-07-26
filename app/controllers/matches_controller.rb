@@ -5,16 +5,17 @@ class MatchesController < ApplicationController
   end
 
   def create
-    if @match = Match.create(match_params)
+    @match = Match.new(match_params)
+    if @match.save
       @winner = Player.find(params[:match][:winner_player_id])
       @winner.update_rank
-
       @loser = Player.find(params[:match][:loser_player_id])
       @loser.update_rank
-
       Player.update_position
-  end
-    redirect_to @match
+      redirect_to @match
+    else
+      redirect_to :back
+    end
   end
 
   def show
