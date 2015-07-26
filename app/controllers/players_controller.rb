@@ -16,6 +16,7 @@ class PlayersController < ApplicationController
   def create
     @player = Player.new(player_params)
     if @player.save
+      flash[:success] = "Player created"
       redirect_to player_path(@player)
     else
       redirect_to :back
@@ -30,6 +31,7 @@ class PlayersController < ApplicationController
     @player = Player.find(params[:id])
     @player.update(player_params_avatar)
     @player.update_attribute(:avatar, params[:player][:avatar])
+    flash[:success] = "Avatar updated"
     redirect_to player_path(@player)
   end
 
