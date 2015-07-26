@@ -14,7 +14,7 @@ class PlayersController < ApplicationController
   end
 
   def create
-    @player = Player.create(player_params)
+    @player = Player.create!(player_params)
     redirect_to player_path(@player)
   end
 

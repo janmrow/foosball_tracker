@@ -19,7 +19,7 @@ end
 group :development, :test do  
   gem 'guard-rspec'  
   gem 'factory_girl_rails'  
-  #gem 'pry-rails'  
+  # gem 'pry-rails'  
   gem 'rspec-rails'  
 end
 
