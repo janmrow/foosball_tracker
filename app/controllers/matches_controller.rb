@@ -15,7 +15,7 @@ class MatchesController < ApplicationController
       flash[:success] = "Match created"
       redirect_to @match
     else
-      redirect_to :back
+      render 'new'
     end
   end
 

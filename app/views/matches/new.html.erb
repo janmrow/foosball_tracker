@@ -1,6 +1,7 @@
 <h1>Add new match</h1>
 <% if Player.count > 1 %>
   <%= form_for @match do |f| %>
+    <%= render '/shared/error_messages', object: f.object %>
     <%= f.label :winner_player_id, "Winner: " %>
     <%= f.collection_select :winner_player_id, Player.all, :id, :full_name %><br>
     <%= f.label :loser_player_id, "Loser: " %>

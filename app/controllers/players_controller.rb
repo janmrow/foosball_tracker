@@ -19,7 +19,7 @@ class PlayersController < ApplicationController
       flash[:success] = "Player created"
       redirect_to player_path(@player)
     else
-      redirect_to :back
+      render 'new'
     end
   end
 
