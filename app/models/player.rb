@@ -1,6 +1,6 @@
 class Player < ActiveRecord::Base
-  validates :nickname, presence: true, uniqueness: true;
-  validates :firstname, :lastname, presence: true;
+  validates :nickname, presence: true, uniqueness: true, length: { minimum: 2, maximum: 30};
+  validates :firstname, :lastname, presence: true, length: { minimum: 2, maximum: 30};
   has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
@@ -67,10 +67,5 @@ class Player < ActiveRecord::Base
       player.position = index + 1
       player.save
        end
-
-
-    # @player = Player.find(14)
-    # @player.position = 1
-    # @player.save
   end
 end

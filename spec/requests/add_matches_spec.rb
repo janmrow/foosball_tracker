@@ -5,10 +5,14 @@ RSpec.describe "AddMatches", type: :request do
 
     subject { page }
 
-    describe "creating new match" do 
+    describe "matches page" do
       before { visit new_match_path }
 
       it { should have_selector('h1', 'Add new match') }
+    end
+
+    describe "create new match" do 
+      before { visit new_match_path }
 
       describe "with valid data" do
         let!(:player1) { FactoryGirl.create :player1 }
@@ -29,10 +33,10 @@ RSpec.describe "AddMatches", type: :request do
 
       end
 
-      describe "without data" do
+      describe "without date" do
 
       end
-      
+
     end
   end
 end
