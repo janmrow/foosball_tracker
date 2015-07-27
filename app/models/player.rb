@@ -55,7 +55,7 @@ class Player < ActiveRecord::Base
   end
 
   def update_rank
-    self.rank = simple_rank_points
+    self.rank = simple_rank_points.round(2)
     self.save
   end
 
