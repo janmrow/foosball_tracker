@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "AddPlayers", type: :request do
-  describe "Creating player" do
+  describe "creating player" do
 
     subject { page }
 

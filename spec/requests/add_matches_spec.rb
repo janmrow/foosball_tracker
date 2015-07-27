@@ -1,18 +1,38 @@
 require 'rails_helper'
 
 RSpec.describe "AddMatches", type: :request do
-  describe "add match" do
-    let(:player) { FactoryGirl.create :player }
-    
-    it "with valid data" do
-    end
+  describe "adding match" do
 
-    it "between player and himself" do 
+    subject { page }
 
-    end
+    describe "creating new match" do 
+      before { visit new_match_path }
 
-    it "without" do
+      it { should have_selector('h1', 'Add new match') }
 
+      describe "with valid data" do
+        let!(:player1) { FactoryGirl.create :player1 }
+        let!(:player2) { FactoryGirl.create :player2 } 
+
+        before do
+          visit new_match_path 
+          page.select(player1.firstname, from: 'match_winner_player_id')
+          page.select(player2.firstname, from: 'match_loser_player_id')
+          click_button 'Add match'
+        end
+
+        it { should have_selector('h3', 'This is match') }
+        it { should have_content('Match between: ' + player1.full_name + ' vs ' + player2.full_name)}
+      end
+
+      describe "between player and himself" do 
+
+      end
+
+      describe "without data" do
+
+      end
+      
     end
   end
 end
