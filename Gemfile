@@ -13,6 +13,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem "paperclip", "~> 4.3"
 gem 'bootstrap-sass', '~> 3.3.5'
 gem 'jquery-ui-rails'
+gem 'capybara-webkit'
 
 group :development do  
 end

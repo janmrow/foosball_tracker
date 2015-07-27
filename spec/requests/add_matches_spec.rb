@@ -22,6 +22,7 @@ RSpec.describe "AddMatches", type: :request do
           visit new_match_path 
           page.select(player1.firstname, from: 'match_winner_player_id')
           page.select(player2.firstname, from: 'match_loser_player_id')
+          fill_in "match_date", with: "05/05/2015"
           click_button 'Add match'
         end
 

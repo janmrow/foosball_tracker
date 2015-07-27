@@ -80,7 +80,7 @@ RSpec.describe Player, type: :model do
       @player2 = Player.create(firstname: "Second", lastname: "Player", nickname: "second99")
       @match = Match.create(
               { loserscore: 1, winner_player_id: @player.id,
-                loser_player_id: @player2.id })
+                loser_player_id: @player2.id, date: "15/05/2015" })
     end
     it { expect(@player.number_of_wins).to eq 1 }
     it { expect(@player2.number_of_losts).to eq 1 }
@@ -107,9 +107,10 @@ RSpec.describe Player, type: :model do
     before do
       @player.save
       @player2 = Player.create(firstname: "Second", lastname: "Player", nickname: "second99")
+      @player3 = Player.create(firstname: "Third", lastname: "Player", nickname: "third99")
       @match = Match.create(
               { loserscore: 1, winner_player_id: @player.id,
-                loser_player_id: @player2.id })
+                loser_player_id: @player2.id, date: "15/05/2015"  })
       @player.update_rank
       @player2.update_rank
       Player.update_position
@@ -121,5 +122,13 @@ RSpec.describe Player, type: :model do
     it { expect(@player2.position).to eq 2 }
     it { expect(@player.rank).to eq 1.1 }
     it { expect(@player2.rank).to eq -0.4 }
+
+    it "player which has matches should be in simple rank" do
+      expect(Player.simple_rank(Array(@player))).to eq Array(@player)
+    end
+    it "player which has no matches shouldn't be in simple rank" do
+      expect(Player.simple_rank(Array(@player3))).to eq []
+    end
   end
+  
 end

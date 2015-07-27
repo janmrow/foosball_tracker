@@ -3,6 +3,7 @@ class PlayersController < ApplicationController
 
   def index
     @players = Player.order(sort_column + " " + sort_direction)
+    @players = Player.simple_rank(@players)
   end
 
   def show

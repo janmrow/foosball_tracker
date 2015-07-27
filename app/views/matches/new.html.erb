@@ -9,7 +9,7 @@
     <%= f.collection_select :loser_player_id, Player.all, :id, :full_name %>
     <p>Loser's score: <%= f.select :loserscore, options_for_select(1..10) %></p>
     <p><b>Match date</b> (click to open calendar) </p>
-    <%= f.text_field :date, readonly: true %><br>
+    <%= f.text_field :date %><br>
     <%= f.submit "Add match" %>
   <% end %>
 
