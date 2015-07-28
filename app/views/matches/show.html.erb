@@ -1,8 +1,9 @@
 <% provide(:title, "Match #" + @match.id.to_s ) %>
 <h3>This is match #<%= @match.id %></h3>
-<p>Match played <b><%= @match.date %></b> between:</p>
+<p>Match played <b><%= @match.date %></b></p>
 <div class="row">
   <div class="col-sm-4">
+    <h3>Winner</h3>
     <p id="winner"><%= @winner.firstname + " " + @winner.lastname %><br>
     (<%= @winner.nickname %>)</p>
     <%= image_tag @winner.avatar.url(:medium) %>
@@ -10,6 +11,7 @@
     <%= link_to "Go to winner page", player_path(@winner), class: "btn btn-default" %>
   </div>
   <div class="col-sm-4">
+    <h3>Loser</h3>
     <p id="loser"><%= @loser.firstname + " " + @loser.lastname %><br>
     (<%= @loser.nickname %>)</p>
     <%= image_tag @loser.avatar.url(:medium) %>

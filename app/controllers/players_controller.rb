@@ -8,6 +8,8 @@ class PlayersController < ApplicationController
 
   def show
     @player = Player.find(params[:id])
+    @wins = @player.wins.order("date DESC")
+    @losts = @player.losts.order("date DESC")
   end
 
   def new
@@ -16,6 +18,7 @@ class PlayersController < ApplicationController
 
   def create
     @player = Player.new(player_params)
+    @player.rank = 0
     if @player.save
       flash[:success] = "Player created"
       redirect_to player_path(@player)

@@ -1,7 +1,10 @@
 class Player < ActiveRecord::Base
   validates :nickname, presence: true, uniqueness: true, length: { minimum: 2, maximum: 30};
   validates :firstname, :lastname, presence: true, length: { minimum: 2, maximum: 30};
-  has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }
+  has_attached_file :avatar, 
+                    styles: { :medium => "150x150>" },
+                    default_url: "default_:style.png"
+
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
   def full_name

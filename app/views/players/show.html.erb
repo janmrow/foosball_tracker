@@ -1,37 +1,49 @@
 <% provide(:title, @player.full_name) %>
-<div class="row">
-  <div class="col-md-12">
-    <h2>
-      <%= image_tag @player.avatar.url(:medium) %>
-      <%= @player.full_name %>
-    </h2>
-    <p>This is page <%= @player.firstname %> <%= @player.lastname %>. Here you can learng something more about him.</p>
-    <%= link_to "Change avatar", edit_player_path(@player), class: "btn btn-default" %>
-    <% if @player.number_of_wins > 0%>
-    <h3>Wins</h3>
-    <ul>
-      <% @player.wins.each do |match| %>
-        <li><%= match.date %> with <%= Player.find(match.loser_player_id).full_name %></li>
-      <% end %>
-    </ul>
-    <% end %>
-    <% if @player.number_of_losts > 0 %>
-    <h3>Losts</h3>
-    <ul>
-      <% @player.losts.each do |match| %>
-        <li><%= match.date %> with <%= Player.find(match.winner_player_id).full_name %></li>
-      <% end %>
-    </ul>
-    <% end %>
-    <h3>Statistics</h3>
-    <ul>
-      <li>Matches: <%= @player.number_of_matches %></li>
-      <li>Wins: <%= @player.number_of_wins %></li>
-      <li>Losts: <%= @player.number_of_losts %></li>
-      <li>Points earned: <%= @player.points_earned %></li>
-      <li>Points lost: <%= @player.points_lost %></li>
-      <li>Rank: <%= @player.simple_rank_points %></li>
-    </ul>
-</div>
+    <div class="row">
+      <div class="col-sm-6">
+        <h2><%= @player.full_name %></h2>
+        <%= image_tag @player.avatar.url(:medium) %><br><br>
+        <p>This is page <b><%= @player.full_name %></b>.</p>
+        <p>Here you can learn something more about him.</p>
+        <p>You can change his avatar: <%= link_to "Change avatar", edit_player_path(@player), class: "btn btn-default" %></p>        
+      </div>
+      <div class="col-sm-6">
+        <h3>Statistics</h3>
+        <ul class="list-group">
+          <li class="list-group-item"><span class="badge"><%= @player.number_of_matches %></span> Matches</li>
+          <li class="list-group-item"><span class="badge"><%= @player.number_of_wins %></span> Wins</li>
+          <li class="list-group-item"><span class="badge"><%= @player.number_of_losts %></span> Losts</li>
+          <li class="list-group-item"><span class="badge"><%= @player.points_earned %></span> Points earned</li>
+          <li class="list-group-item"><span class="badge"><%= @player.points_lost %></span> Points lost</li>
+          <li class="list-group-item"><span class="badge"><%= @player.rank %></span> Rank points:</li>
+          <% if @player.position == nil %>
+            <li class="list-group-item"><span class="badge">-</span> Rank position:</li>
+          <% else %>
+            <li class="list-group-item"><span class="badge"><%= @player.position %></span> Rank position:</li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
 
-
+    <div class="row">
+        <% if @player.number_of_wins > 0%>
+        <div class="col-sm-6">
+          <h3>Wins</h3>
+          <ul class="list-group">
+            <% @wins.each do |match| %>
+              <li class="list-group-item"><b><%= match.date %></b> with <%= Player.find(match.loser_player_id).full_name %></li>
+            <% end %>
+          </ul>
+        </div>
+        <% end %>
+        <% if @player.number_of_losts > 0 %>
+        <div class="col-sm-6">
+          <h3>Losts</h3>
+          <ul class="list-group">
+            <% @losts.each do |match| %>
+              <li class="list-group-item"><b><%= match.date %></b> with <%= Player.find(match.winner_player_id).full_name %></li>
+            <% end %>
+          </ul>
+        </div>
+        <% end %>
+    </div>
