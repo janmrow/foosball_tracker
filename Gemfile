@@ -14,6 +14,7 @@ gem "paperclip", "~> 4.3"
 gem 'bootstrap-sass', '~> 3.3.5'
 gem 'jquery-ui-rails'
 gem 'jquery-turbolinks'
+gem 'sprockets'
 gem 'capybara-webkit'
 
 group :development do  
