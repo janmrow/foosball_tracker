@@ -73,6 +73,15 @@ th .desc {
   background-image: image-url("down.png");
 }
 
+div #loser {
+  font-size: 20px;
+  color: #d9534f;
+}
+
+div #winner {
+  font-size: 20px;
+  color: #5cb85c;
+}
 footer p {
   text-align: center;
 }

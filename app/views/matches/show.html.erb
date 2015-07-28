@@ -1,10 +1,21 @@
 <% provide(:title, "Match #" + @match.id.to_s ) %>
 <h3>This is match #<%= @match.id %></h3>
-<p>Match between:
-  <%= Player.find(@match.winner_player_id).full_name %> vs 
-  <%= Player.find(@match.loser_player_id).full_name %>
-</p>
-<p>Score: 10 : <%= @match.loserscore %></p>
-<p>Match date: <%= @match.date %></p>
+<p>Match played <b><%= @match.date %></b> between:</p>
+<div class="row">
+  <div class="col-sm-4">
+    <p id="winner"><%= @winner.firstname + " " + @winner.lastname %><br>
+    (<%= @winner.nickname %>)</p>
+    <%= image_tag @winner.avatar.url(:medium) %>
+    <p><b>Score: 10</b></p> 
+    <%= link_to "Go to winner page", player_path(@winner), class: "btn btn-default" %>
+  </div>
+  <div class="col-sm-4">
+    <p id="loser"><%= @loser.firstname + " " + @loser.lastname %><br>
+    (<%= @loser.nickname %>)</p>
+    <%= image_tag @loser.avatar.url(:medium) %>
+    <p><b>Score: <%= @match.loserscore %></b></p>
+    <%= link_to "Go to loser page", player_path(@loser), class: "btn btn-default" %>
+    </div>
+</div>
+<p></p>
 
-<%= link_to "Home", root_path %>

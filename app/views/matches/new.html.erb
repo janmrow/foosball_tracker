@@ -10,7 +10,7 @@
         <%= f.label :loser_player_id, "Loser: " %>
         <%= f.collection_select :loser_player_id, Player.all, :id, :full_name, {}, html_options = { class: "form-control" } %><br>
         <%= f.label "Loser's score" %>
-        <%= f.select :loserscore, options_for_select(1..10), {}, { class: "form-control" } %><br>
+        <%= f.select :loserscore, options_for_select(1..9), {}, { class: "form-control" } %><br>
         <%= f.label "Match date (click to open calendar)" %>
         <%= f.text_field :date, class: "form-control" %><br>
         <%= f.submit "Add match", class: "btn btn-default" %>

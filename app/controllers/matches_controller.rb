@@ -1,7 +1,6 @@
 class MatchesController < ApplicationController
   def new
     @match = Match.new
-    @player = Player.all
   end
 
   def create
@@ -21,6 +20,8 @@ class MatchesController < ApplicationController
 
   def show
     @match = Match.find(params[:id])
+    @winner = Player.find(@match.winner_player_id)
+    @loser = Player.find(@match.loser_player_id)
   end
 
   private
