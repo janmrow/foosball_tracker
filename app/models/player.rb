@@ -62,7 +62,7 @@ class Player < ActiveRecord::Base
 
   def self.update_position
     @players = Player.all
-    @players = @players.sort_by { |player| player.rank.to_i }.reverse
+    @players = @players.sort_by { |player| player.rank.to_f }.reverse
 
     @players.each_with_index do |player, index|
       player.position = index + 1
