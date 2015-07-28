@@ -26,8 +26,8 @@ RSpec.describe "AddMatches", type: :request do
           click_button 'Add match'
         end
 
-        it { should have_selector('h3', 'This is match') }
-        it { should have_content('Match between: ' + player1.full_name + ' vs ' + player2.full_name)}
+        it { should have_selector('h3', player1.full_name) }
+        it { should have_selector('h3', player2.full_name) }
       end
 
       describe "between player and himself" do 
