@@ -1,25 +1,27 @@
 <% provide(:title, "Add new match") %>
 <h1>Add new match</h1>
-<% if Player.count > 1 %>
-  <%= form_for @match do |f| %>
-    <%= render '/shared/error_messages', object: f.object %>
-    <%= f.label :winner_player_id, "Winner: " %>
-    <%= f.collection_select :winner_player_id, Player.all, :id, :full_name %><br>
-    <%= f.label :loser_player_id, "Loser: " %>
-    <%= f.collection_select :loser_player_id, Player.all, :id, :full_name %>
-    <p>Loser's score: <%= f.select :loserscore, options_for_select(1..10) %></p>
-    <p><b>Match date</b> (click to open calendar) </p>
-    <%= f.text_field :date %><br>
-    <%= f.submit "Add match" %>
-  <% end %>
-
-<% else %>
-
 <div class="row">
-  <div class="col-md-12">
-    <h2>Upss. We have a problem</h2>
-    <p>You must add at least two players before you add a match!</p>  
-    <%= link_to "Add player", new_player_path, class: "btn btn-default" %>
+  <div class="col-md-6">
+    <% if Player.count > 1 %>
+      <%= form_for @match do |f| %>
+        <%= render '/shared/error_messages', object: f.object %>
+        <%= f.label :winner_player_id, "Winner: " %>
+        <%= f.collection_select :winner_player_id, Player.all, :id, :full_name, {}, html_options = { class: "form-control" } %><br>
+        <%= f.label :loser_player_id, "Loser: " %>
+        <%= f.collection_select :loser_player_id, Player.all, :id, :full_name, {}, html_options = { class: "form-control" } %><br>
+        <%= f.label "Loser's score" %>
+        <%= f.select :loserscore, options_for_select(1..10), {}, { class: "form-control" } %><br>
+        <%= f.label "Match date (click to open calendar)" %>
+        <%= f.text_field :date, class: "form-control" %><br>
+        <%= f.submit "Add match" %>
+      <% end %>
+    <% else %>
+    <div class="row">
+      <div class="col-md-12">
+        <h2>Upss. We have a problem</h2>
+        <p>You must add at least two players before you add a match!</p>  
+        <%= link_to "Add player", new_player_path, class: "btn btn-default" %>
+    </div>
+    <% end %>
+  </div>
 </div>
-
-<% end %>

@@ -1,13 +1,18 @@
 <% provide(:title, "Add new player") %>
+
 <h1>Add new player</h1>
-<%= form_for @player do |f| %>
-  <%= render '/shared/error_messages', object: f.object %>
-  <%= f.label :firstname %>
-  <%= f.text_field :firstname %><br>
-  <%= f.label :lastname %>
-  <%= f.text_field :lastname %><br>
-  <%= f.label :nickname %>
-  <%= f.text_field :nickname %><br>
-  <%= f.file_field :avatar, as: :file %><br>
-  <%= f.submit "Add player" %>
-<% end %>
+<div class="row">
+  <div class="col-md-6">
+    <%= form_for @player do |f| %>
+      <%= render '/shared/error_messages', object: f.object %>
+      <%= f.label :firstname %>
+      <%= f.text_field :firstname, class: 'form-control' %><br>
+      <%= f.label :lastname %>
+      <%= f.text_field :lastname, class: 'form-control' %><br>
+      <%= f.label :nickname %>
+      <%= f.text_field :nickname, class: 'form-control' %><br>
+      <%= f.file_field :avatar, as: :file, class: "btn btn-default btn-file" %><br>
+      <%= f.submit "Add player", class: "btn btn-default" %>
+    <% end %>
+  </div>
+</div>
