@@ -2,7 +2,7 @@
 
 <h1>Add new player</h1>
 <div class="row">
-  <div class="col-md-6">
+  <div class="col-sm-4">
     <%= form_for @player do |f| %>
       <%= render '/shared/error_messages', object: f.object %>
       <%= f.label :firstname %>
@@ -14,5 +14,8 @@
       <%= f.file_field :avatar, as: :file, class: "btn btn-default btn-file" %><br>
       <%= f.submit "Add player", class: "btn btn-default" %>
     <% end %>
+  </div>
+  <div class="col-sm-6">
+  <%= image_tag("player.jpg") %>
   </div>
 </div>

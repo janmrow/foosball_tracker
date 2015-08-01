@@ -1,7 +1,7 @@
 <% provide(:title, "Add new match") %>
 <h1>Add new match</h1>
 <div class="row">
-  <div class="col-md-6">
+  <div class="col-sm-4">
     <% if Player.count > 1 %>
       <%= form_for @match do |f| %>
         <%= render '/shared/error_messages', object: f.object %>
@@ -21,7 +21,11 @@
         <h2>Upss. We have a problem</h2>
         <p>You must add at least two players before you add a match!</p>  
         <%= link_to "Add player", new_player_path, class: "btn btn-default" %>
+      </div>
     </div>
     <% end %>
+  </div>
+  <div class="col-sm-6">
+    <%= image_tag("match.jpg") %>
   </div>
 </div>
