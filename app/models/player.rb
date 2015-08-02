@@ -68,6 +68,6 @@ class Player < ActiveRecord::Base
     @players.each_with_index do |player, index|
       player.position = index + 1
       player.save
-       end
+    end
   end
 end
