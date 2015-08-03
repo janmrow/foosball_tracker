@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Player, type: :model do
   before do 
-    @player = Player.new(firstname: "John", lastname: "Travolta", nickname: "trav11")
+    @player = FactoryGirl.build(:player)
   end
 
   subject { @player }
@@ -17,52 +17,52 @@ RSpec.describe Player, type: :model do
 
   it { should be_valid }
 
-  describe "when firstname is not present" do
+  context "when firstname is not present" do
     before { @player.firstname = " "}
     it { should_not be_valid }
   end
 
-  describe "when lastname is not present" do
+  context "when lastname is not present" do
     before { @player.lastname = " "}
     it { should_not be_valid }
   end
 
-  describe "when nickname is not present" do
+  context "when nickname is not present" do
     before { @player.nickname = " "}
     it { should_not be_valid }
   end
 
-  describe "when nickname is too short" do
+  context "when nickname is too short" do
     before { @player.nickname = "x" }
     it { should_not be_valid }
   end  
 
-  describe "when nickname is too long" do
+  context "when nickname is too long" do
     before { @player.nickname = "x" * 31 }
     it { should_not be_valid }
   end
 
-  describe "when firstname is too short" do
+  context "when firstname is too short" do
     before { @player.firstname = "x" }
     it { should_not be_valid}
   end
 
-  describe "when firstname is too long" do
+  context "when firstname is too long" do
     before { @player.firstname = "x" * 31 }
     it { should_not be_valid}
   end
 
-  describe "when lastname is too short" do
+  context "when lastname is too short" do
     before { @player.lastname = "x" }
     it { should_not be_valid}
   end
 
-  describe "when lastname is too long" do
+  context "when lastname is too long" do
     before { @player.lastname = "x" * 31 }
     it { should_not be_valid}
   end
 
-  describe "when nickname is used" do
+  context "when nickname is used" do
     before do
       another_player = @player.dup
       another_player.save
@@ -70,17 +70,18 @@ RSpec.describe Player, type: :model do
     it { should_not be_valid }
   end
 
-  describe "get full name" do
+  context "get full name" do
+    before { @player.update_attributes(
+                      firstname: "John", lastname: "Travolta", nickname: "trav11") }
     it { expect(@player.full_name).to eq "John Travolta (trav11)" }
   end
 
-  describe "get some stats" do
+  context "get some stats" do
     before do
       @player.save
-      @player2 = Player.create(firstname: "Second", lastname: "Player", nickname: "second99")
-      @match = Match.create(
-              { loserscore: 1, winner_player_id: @player.id,
-                loser_player_id: @player2.id, date: "15/05/2015" })
+      @player2 = FactoryGirl.create(:player)
+      @match = Match.create( { loserscore: 1, winner_player_id: @player.id,
+                loser_player_id: @player2.id, date: "15/05/2015" } )
     end
     it { expect(@player.number_of_wins).to eq 1 }
     it { expect(@player2.number_of_losts).to eq 1 }
@@ -103,14 +104,14 @@ RSpec.describe Player, type: :model do
     end
   end
 
-  describe "update ranking position and player's points" do
+  context "update ranking position and player's points" do
     before do
       @player.save
-      @player2 = Player.create(firstname: "Second", lastname: "Player", nickname: "second99")
-      @player3 = Player.create(firstname: "Third", lastname: "Player", nickname: "third99")
-      @match = Match.create(
-              { loserscore: 1, winner_player_id: @player.id,
-                loser_player_id: @player2.id, date: "15/05/2015"  })
+      @player2 = FactoryGirl.create(:player)
+      @player3 = FactoryGirl.create(:player)
+      @player4 = FactoryGirl.create(:player)
+      @match = Match.create( { loserscore: 1, winner_player_id: @player.id,
+                               loser_player_id: @player2.id, date: "15/05/2015" })
       @player.update_rank
       @player2.update_rank
       Player.update_position
@@ -129,6 +130,22 @@ RSpec.describe Player, type: :model do
     it "player which has no matches shouldn't be in simple rank" do
       expect(Player.simple_rank(Array(@player3))).to eq []
     end
-  end
-  
+
+    it "top players array should be empty" do
+      expect(Player.top_players).to eq []
+    end
+
+    it "" do
+      Match.create( { loserscore: 1, winner_player_id: @player.id,
+                               loser_player_id: @player2.id, date: "16/05/2015" })
+      Match.create( { loserscore: 1, winner_player_id: @player3.id,
+                               loser_player_id: @player4.id, date: "15/05/2015" })
+      Player.update_position
+
+      @top_players = Player.top_players
+      expect(@top_players.count).to eq 4
+      expect(@top_players[0]).to eq @player
+      expect(@top_players[1]).to eq @player3
+    end
+  end  
 end

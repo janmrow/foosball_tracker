@@ -1,11 +1,6 @@
 class PagesController < ApplicationController
   def home
-    @players = Player.all.order(:position)
-    Player.simple_rank(@players)
-    if @players.count > 3
-      @top_players = []
-      @top_players.concat([@players[0], @players[1], @players[2], @players[3]])
-    end
+    @top_players = Player.top_players
   end
 
   def about

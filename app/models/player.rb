@@ -70,4 +70,14 @@ class Player < ActiveRecord::Base
       player.save
     end
   end
+
+  def self.top_players
+    @players = Player.all.order(:position)
+    @players = Player.simple_rank(@players)
+    @top_players = []
+    if @players.count > 3
+      @top_players.concat([@players[0], @players[1], @players[2], @players[3]])
+    end
+    @top_players
+  end
 end

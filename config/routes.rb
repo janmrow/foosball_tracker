@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'pages/home'
   get 'pages/about'
   get 'matches/new'
   root 'pages#home'

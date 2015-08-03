@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "AddPlayers", type: :request do
-  describe "creating player" do
+  describe "create new player and visit his page" do
 
     subject { page }
 
@@ -15,7 +15,7 @@ RSpec.describe "AddPlayers", type: :request do
       before { visit new_player_path }
 
 
-      describe "with valid data" do
+      context "with valid data" do
         let(:firstname) { "John" }
         let(:lastname) { "Smith" }
         let(:nickname) { "smithy99" }
@@ -31,7 +31,7 @@ RSpec.describe "AddPlayers", type: :request do
         it { should have_selector('div.alert', text: "Player created")}
       end
 
-      describe "without nickname" do
+      context "without nickname" do
         before do
           visit new_player_path        
           click_button "Add player"

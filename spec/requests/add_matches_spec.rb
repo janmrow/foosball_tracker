@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "AddMatches", type: :request do
-  describe "adding match" do
+  describe "create new match and visit its page" do
 
     subject { page }
 
@@ -14,9 +14,9 @@ RSpec.describe "AddMatches", type: :request do
     describe "create new match" do 
       before { visit new_match_path }
 
-      describe "with valid data" do
-        let!(:player1) { FactoryGirl.create :player1 }
-        let!(:player2) { FactoryGirl.create :player2 } 
+      context "with valid data" do
+        let!(:player1) { FactoryGirl.create :player }
+        let!(:player2) { FactoryGirl.create :player } 
 
         before do
           visit new_match_path 
@@ -30,11 +30,11 @@ RSpec.describe "AddMatches", type: :request do
         it { should have_selector('h3', player2.full_name) }
       end
 
-      describe "between player and himself" do 
+      context "between player and himself" do 
 
       end
 
-      describe "without date" do
+      context "without date" do
 
       end
 
