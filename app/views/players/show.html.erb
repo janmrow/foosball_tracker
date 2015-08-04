@@ -5,7 +5,7 @@
         <%= image_tag @player.avatar.url(:medium) %><br><br>
         <p>This is page <b><%= @player.full_name %></b>.</p>
         <p>Here you can learn something more about him.</p>
-        <p>You can change his avatar: <%= link_to "Change avatar", edit_player_path(@player), class: "btn btn-default" %></p>        
+        <p>You can change his avatar: <%= link_to "Change avatar", edit_player_path(@player), class: "btn btn-default" %></p>
       </div>
       <div class="col-sm-6">
         <h3>Statistics</h3>
@@ -23,6 +23,16 @@
           <% end %>
         </ul>
       </div>
+    </div>
+
+    <div class="row">
+    <div class="col-sm-6">
+      <%= pie_chart({ "Wins" => @wins.count, "Losts" => @losts.count }) %>
+    </div>
+      <div class="col-sm-6">
+        <%= bar_chart({ "1st" => Player.top_players[0].rank, @player.nickname => @player.rank }) %>
+    </div>
+
     </div>
 
     <div class="row">

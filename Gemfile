@@ -16,6 +16,7 @@ gem 'jquery-ui-rails'
 gem 'jquery-turbolinks'
 gem 'sprockets'
 gem 'capybara-webkit'
+gem "chartkick"
 
 group :development do  
 end

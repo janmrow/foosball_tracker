@@ -91,7 +91,7 @@ RSpec.describe "Pages", type: :request do
   describe "About" do
     before { visit pages_about_path }
 
-    it { should have_selector('h1'), text: 'Hello, I am Jan'}
+    it { should have_selector('h1', text: 'Hello, I am Jan') }
   end
 
   it "should have correct links on the left menu" do
