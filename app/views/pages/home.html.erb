@@ -12,12 +12,14 @@
       <div class="row">
         <div class="col-md-12">
           <h2>Currently 4 best players</h2>
-            <%= column_chart({ 
+            <% if !@top_players.empty? %>
+              <%= column_chart({ 
                               @top_players[0].nickname => @top_players[0].rank,
                               @top_players[1].nickname => @top_players[1].rank,
                               @top_players[2].nickname => @top_players[2].rank,
                               @top_players[3].nickname => @top_players[3].rank
                               }) %>
+            <% end %>
         </div>
           <% if !@top_players.empty? %>
             <% @top_players.each do |top_player| %>
