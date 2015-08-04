@@ -25,15 +25,16 @@
       </div>
     </div>
 
-    <div class="row">
-    <div class="col-sm-6">
-      <%= pie_chart({ "Wins" => @wins.count, "Losts" => @losts.count }) %>
-    </div>
+    <% if @player.number_of_matches > 0 %>
+      <div class="row">
       <div class="col-sm-6">
-        <%= bar_chart({ "1st" => Player.top_players[0].rank, @player.nickname => @player.rank }) %>
-    </div>
-
-    </div>
+        <%= pie_chart({ "Wins" => @wins.count, "Losts" => @losts.count }) %>
+      </div>
+        <div class="col-sm-6">
+          <%= bar_chart({ "1st" => Player.top_players[0].rank, @player.nickname => @player.rank }) %>
+      </div>
+      </div>
+    <% end %>
 
     <div class="row">
         <% if @player.number_of_wins > 0%>
