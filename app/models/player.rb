@@ -80,4 +80,10 @@ class Player < ActiveRecord::Base
     end
     @top_players
   end
+
+  def self.top_player
+    @players = Player.all.order(:position)
+    @players = Player.simple_rank(@players)
+    @players[0]
+  end
 end

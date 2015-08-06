@@ -25,36 +25,45 @@
       </div>
     </div>
 
-    <% if @player.number_of_matches > 0 %>
       <div class="row">
+      <% if @player.number_of_matches > 0 %>
       <div class="col-sm-6">
         <%= pie_chart({ "Wins" => @wins.count, "Losts" => @losts.count }) %>
       </div>
-        <div class="col-sm-6">
-          <%= bar_chart({ "1st" => Player.top_players[0].rank, @player.nickname => @player.rank }) %>
+      <% end %>
+
+      <% if @player.rank > 0 %>
+      <div class="col-sm-6">
+        <%= bar_chart({ "1st" => Player.top_player.rank, @player.nickname => @player.rank }) %>
       </div>
-      </div>
-    <% end %>
+      <% else %>
+      <div class="col-sm-6"></div>
+      <% end %>
+    </div>
 
     <div class="row">
-        <% if @player.number_of_wins > 0%>
         <div class="col-sm-6">
           <h3>Wins</h3>
           <ul class="list-group">
-            <% @wins.each do |match| %>
-              <li class="list-group-item"><b><%= match.date %></b> with <%= Player.find(match.loser_player_id).full_name %></li>
+            <% if @player.number_of_wins > 0%>
+              <% @wins.each do |match| %>
+                <li class="list-group-item"><b><%= match.date %></b> with <%= Player.find(match.loser_player_id).full_name %></li>
+              <% end %>
+            <% else %>
+              <li class="list-group-item">none</li>
             <% end %>
           </ul>
         </div>
-        <% end %>
-        <% if @player.number_of_losts > 0 %>
         <div class="col-sm-6">
           <h3>Losts</h3>
           <ul class="list-group">
-            <% @losts.each do |match| %>
-              <li class="list-group-item"><b><%= match.date %></b> with <%= Player.find(match.winner_player_id).full_name %></li>
+            <% if @player.number_of_losts > 0 %>
+              <% @losts.each do |match| %>
+                <li class="list-group-item"><b><%= match.date %></b> with <%= Player.find(match.winner_player_id).full_name %></li>
+              <% end %>
+            <% else %>
+              <li class="list-group-item">none</li>
             <% end %>
           </ul>
         </div>
-        <% end %>
     </div>
