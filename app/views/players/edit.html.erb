@@ -5,6 +5,6 @@
 <%= image_tag @player.avatar.url(:medium) %>
 <h2>So choose a new one!</h2>
 <%= form_for @player do |f| %>
-  <%= f.file_field :avatar, as: :file %><br>
-  <%= f.submit "Change avatar" %>
+  <%= f.file_field :avatar, as: :file, class: "btn btn-default" %><br>
+  <%= f.submit "Change avatar", class: "btn btn-default" %>
 <% end %>
