@@ -13,6 +13,7 @@ RSpec.describe "Pages", type: :request do
     @match2 = Match.create(loserscore: 5, winner_player_id: @player.id, loser_player_id: @player3.id, date: '2015-05-02')
     Match.create(loserscore: 1, winner_player_id: @player.id, loser_player_id: @player4.id, date: '2015-05-03')
     Match.create(loserscore: 1, winner_player_id: @player2.id, loser_player_id: @player4.id, date: '2015-05-04')
+
     # in rank: player, player2, player3, player4
   end
 
@@ -30,22 +31,17 @@ RSpec.describe "Pages", type: :request do
     end
 
     context "when click on player avatar" do
-      #before { find('.thumbnail').first.click }
-      #before { click_link(@player.id) }
+      before do 
+        @player.update_rank
+        find("##{@player.nickname}").click 
+      end
 
-      # before { find(:xpath, '//a/img[@alt="#{@player.id}"]').click }
-      # find(:xpath, "//img[@class='avatar']/@alt").text.should match /some text/
-      #before { find(:xpath, "//img[@alt='1']").click }
-
-      #before { click_link(@player.nickname) }
-      # before { find("##{@player.nickname}").click }
-      # it { print html }
-      # it { should have_title(@player.full_name.to_s) }
-      # it { should have_selector('h3', text: 'Statistics') }
-      # it "should go to edit avatar page" do
-      #   click_link('Change avatar')
-      #   should have_title('Edit avatar')
-      # end
+      it { should have_title(@player.full_name.to_s) }
+      it { should have_selector('h3', text: 'Statistics') }
+      it "should go to edit avatar page" do
+        click_link('Change avatar')
+        should have_title('Edit avatar')
+      end
     end
 
     context "when can't find top players" do
@@ -88,11 +84,14 @@ RSpec.describe "Pages", type: :request do
       it { find(:xpath, '(//tbody/tr/td[@class="col-md-2"]/a)[1]').text eq @player4.full_name }
     end
 
-    # context "click on player name" do
-    #   before { find(:xpath, '(//tbody/tr/td[@class="col-md-2"]/a)[1]').click } 
+    context "click on player name" do
+      before do
+        @player.update_rank
+        find(:xpath, '(//tbody/tr/td[@class="col-md-2"]/a)[1]').click
+      end
 
-    #   it { should have_title(@player.full_name) }    
-    # end
+      it { should have_title(@player.full_name) }    
+    end
 
   end
 
