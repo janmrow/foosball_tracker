@@ -14,8 +14,7 @@ gem 'bootstrap-sass', '~> 3.3.5'
 gem 'jquery-ui-rails'
 gem 'jquery-turbolinks'
 gem 'sprockets'
-gem 'capybara-webkit'
-gem "chartkick"
+gem 'chartkick'
 
 group :development do
   gem 'sqlite3'
@@ -32,5 +31,6 @@ group :development, :test do
   # gem 'pry-rails'  
   gem 'rspec-rails'  
   gem 'selenium-webdriver'
-  gem 'capybara'  
+  gem 'capybara' 
+  gem 'capybara-webkit' 
 end
