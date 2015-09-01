@@ -19,9 +19,17 @@ class MatchesController < ApplicationController
   end
 
   def show
-    @match = Match.find(params[:id])
-    @winner = Player.find(@match.winner_player_id)
-    @loser = Player.find(@match.loser_player_id)
+    begin
+      @match = Match.find(params[:id])
+      @winner = Player.find(@match.winner_player_id)
+      @loser = Player.find(@match.loser_player_id)
+    rescue ActiveRecord::RecordNotFound => e
+      render 'error'
+    end    
+  end
+
+  def error
+
   end
 
   private
