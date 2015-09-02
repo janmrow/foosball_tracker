@@ -29,7 +29,6 @@ class MatchesController < ApplicationController
   end
 
   def error
-
   end
 
   private

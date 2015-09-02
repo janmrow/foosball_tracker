@@ -7,9 +7,13 @@ class PlayersController < ApplicationController
   end
 
   def show
-    @player = Player.find(params[:id])
-    @wins = @player.wins.order("date DESC")
-    @losts = @player.losts.order("date DESC")
+    begin
+      @player = Player.find(params[:id])
+      @wins = @player.wins.order("date DESC")
+      @losts = @player.losts.order("date DESC")
+    rescue ActiveRecord::RecordNotFound => e
+      render 'error'
+    end
   end
 
   def new
@@ -17,26 +21,36 @@ class PlayersController < ApplicationController
   end
 
   def create
-    @player = Player.new(player_params)
-    @player.rank = 0
-    if @player.save
-      flash[:success] = "Player created"
+    begin
+      @player = Player.new(player_params)
+      @player.rank = 0
+      if @player.save
+        flash[:success] = "Player created"
+      end
       redirect_to player_path(@player)
-    else
+    rescue
       render 'new'
     end
   end
 
   def edit
-    @player = Player.find(params[:id])
+    begin
+      @player = Player.find(params[:id])
+    rescue ActiveRecord::RecordNotFound => e
+      render 'error'
+    end
   end
 
   def update
     @player = Player.find(params[:id])
-    @player.update(player_params_avatar)
-    @player.update_attribute(:avatar, params[:player][:avatar])
-    flash[:success] = "Avatar updated"
-    redirect_to player_path(@player)
+    begin
+      @player.update_attributes(player_params_avatar)
+      flash[:success] = "Avatar updated"
+      redirect_to player_path(@player)
+    rescue ActionController::ParameterMissing => e
+      flash[:danger] = "First choose avatar file"
+      redirect_to :back
+    end
   end
 
   private
@@ -46,7 +60,7 @@ class PlayersController < ApplicationController
     end
 
     def player_params_avatar
-      params.permit(:avatar)
+      params.require(:player).permit(:avatar)
     end
 
     def sort_column
