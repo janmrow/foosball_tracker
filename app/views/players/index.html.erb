@@ -1,22 +1,28 @@
 <% provide(:title, "Ranking") %>
-<h1>List of players</h1>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th><%= sortable "position" %></th>
-      <th><%= sortable "nickname" %></th>
-      <th>Wins/Matches</th>
-      <th><%= sortable "rank" %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @players.each do |player| %>
-    <tr>
-      <td class="col-md-1"><%= player.position %></td>
-      <td class="col-md-2"><%= link_to player.full_name, player_path(player) %></td>
-      <td class="col-md-1"><%= player.number_of_wins %> / <%= player.number_of_matches %></td>
-      <td class="col-md-1"><%= player.rank %></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
+
+<% if @players.empty? %>
+  <h2>There are no players in ranking!</h2>
+  <p>Try to add some players and some matches beetwen them and try again.</p>
+<% else %>
+  <h1>List of players</h1>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th><%= sortable "position" %></th>
+        <th><%= sortable "nickname" %></th>
+        <th>Wins/Matches</th>
+        <th><%= sortable "rank" %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @players.each do |player| %>
+      <tr>
+        <td class="col-md-1"><%= player.position %></td>
+        <td class="col-md-2"><%= link_to player.full_name, player_path(player) %></td>
+        <td class="col-md-1"><%= player.number_of_wins %> / <%= player.number_of_matches %></td>
+        <td class="col-md-1"><%= player.rank %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <% end %>
